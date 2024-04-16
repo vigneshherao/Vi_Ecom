@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProducts } from "../slice/productSlice";
 
 const useProducts = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -9,9 +11,8 @@ const useProducts = () => {
   const fetchProducts = async () => {
     const data = await fetch("http://localhost:8080/");
     const products = await data.json();
-    setProducts(products);
+    dispatch(addProducts(products));
   };
-  return products;
 };
 
 export default useProducts;

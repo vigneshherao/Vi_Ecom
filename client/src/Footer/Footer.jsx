@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-[#E6E7E8] shadow-top h-36 text-center  pt-5 sm:p-5 sm:mt-5">
+    <div className="bg-[#E6E7E8] shadow-top h-36 text-center  pt-5 sm:p-5 sm:mt-5 absolute w-full ">
       <div className="flex justify-center">
         <ul className="flex gap-4 sm:gap-20 py-5">
           {footerContent.map((item) => (
