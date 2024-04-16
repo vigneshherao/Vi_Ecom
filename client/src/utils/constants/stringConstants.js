@@ -4,6 +4,7 @@ export const nameMe = "Vignesh H E";
 export const footerContent = ["About","Location","Store","Contact","Careers"];
 export const profileLink = "https://vigneshtech.netlify.app/";
 export const addtoCart="Add to cart";
+export const buy="Buy Now";
 
 export const categoriesItems = [
     {
@@ -23,3 +24,4 @@ export const categoriesItems = [
         name:"Sneakers"
     }
 ];
+
