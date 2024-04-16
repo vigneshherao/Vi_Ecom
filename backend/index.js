@@ -12,11 +12,24 @@ mongoose
 app.get("/", async (req, res) => {
   try {
     const data = await Listing.find({})
-      .then((data) => console.log(data))
+      .then((data) => res.send(data))
       .catch(() => {
         console.log("data is not found in db");
       });
     res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/product/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    await Listing.findById(id)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((error) => console.log(error));
   } catch (error) {
     console.log(error);
   }
