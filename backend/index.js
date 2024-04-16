@@ -3,6 +3,14 @@ const app = express();
 const mongoose = require("mongoose");
 const port = 8080;
 const Listing = require("./models/listing");
+const cors = require("cors");
+const corsOptions = {
+  origin: "http://localhost:5173",
+};
+
+app.use(cors(corsOptions)); 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json())
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/viecom")
@@ -22,6 +30,13 @@ app.get("/", async (req, res) => {
   }
 });
 
+
+app.post("/login", async (req, res) => {
+  let {email,password} = await req.body;  
+  
+
+});
+
 app.get("/product/:id", async (req, res) => {
   let { id } = req.params;
   try {
@@ -34,6 +49,12 @@ app.get("/product/:id", async (req, res) => {
     console.log(error);
   }
 });
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log("server is running in port " + port);

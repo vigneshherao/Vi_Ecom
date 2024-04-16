@@ -8,7 +8,7 @@ import { addtoCart, buy } from "../utils/constants/stringConstants";
 const ProductDetail = () => {
   const productDetail = useSelector((store) => store?.product?.productDetail);
   const productImage = useSelector((store) => store?.product?.productImage);
-  const { title, description, price,category} = productDetail;
+  const { title, description, price, category } = productDetail;
   const dispatch = useDispatch();
   const { id } = useParams();
   useProductDetails(id);
@@ -41,9 +41,7 @@ const ProductDetail = () => {
       </div>
       <div className="flex flex-col gap-4 lg:w-2/4 bg-gray-200 lg:bg-white p-2">
         <div>
-          <span className="text-red-700 font-semibold">
-            {category.name}
-          </span>
+          <span className="text-red-700 font-semibold">{category?.name}</span>
           <h1 className="text-3xl font-bold">{title}</h1>
         </div>
         <p className="text-gray-700 font-light">{description}</p>
