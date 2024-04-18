@@ -5,8 +5,10 @@ const port = 8080;
 const Listing = require("./models/listing");
 const SignUp = require("./models/signUp");
 const wrapAsync = require("./utils/wrapAsync");
-const ExpressError = require("./utils/ExpressError")
-const ValidationError = require("./utils/ValidationError")
+const ExpressError = require("./utils/ExpressError");
+const validateListing = require("./utils/ValidationError");
+const validateReview = require("./utils/ValidationError");
+const Rating = require("./models/review");
 
 const cors = require("cors");
 const corsOptions = {
@@ -22,9 +24,6 @@ mongoose
   .then(() => console.log("Connected!"))
   .catch((error) => console.log(error));
 
-
-
-
 app.get("/", async (req, res) => {
   try {
     const data = await Listing.find({})
@@ -37,22 +36,25 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.post("/login",ValidationError,wrapAsync(async (req, res) => {
-  const { name, email, password } = req.body;
-  const newUser = new SignUp({
-    name,
-    email,
-    password,
-  });
-  await newUser.save();
-  res.send("working");
-})
+app.post(
+  "/login",
+  validateListing,
+  wrapAsync(async (req, res) => {
+    const { name, email, password } = req.body;
+    const newUser = new SignUp({
+      name,
+      email,
+      password,
+    });
+    await newUser.save();
+    res.send("working");
+  })
 );
 
 app.get("/product/:id", async (req, res) => {
   let { id } = req.params;
   try {
-    await Listing.findById(id)
+    await Listing.findById(id).populate("ratings")
       .then((data) => {
         res.send(data);
       })
@@ -62,15 +64,33 @@ app.get("/product/:id", async (req, res) => {
   }
 });
 
+//review route for rating
 
-app.all("*",(req,res,next)=>{
-    next(new ExpressError(500,"Error occured in request"));
-})
+app.post(
+  "/product/:id/rating",
+  validateReview,
+  wrapAsync(async (req, res) => {
+    const { rating, comment } = req.body;
+    const product = await Listing.findById(req.params.id);
+    const ratingDB = new Rating({
+      rating,
+      comment,
+    });
+    await ratingDB.save();
+    const ok = product.ratings.push(ratingDB);
 
+    await product.save();
+    res.sendStatus(200);
+  })
+);
+
+app.all("*", (req, res, next) => {
+  next(new ExpressError(500, "Error occured in request"));
+});
 
 app.use((err, req, res) => {
-  console.log("Error Found")
-  let {status=404,message="unhalded"} = err;
+  console.log("Error Found");
+  let { status = 404, message = "unhalded" } = err;
   res.status(status).send(message);
 });
 

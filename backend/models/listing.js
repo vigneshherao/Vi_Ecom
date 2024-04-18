@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Rating = require("./review");
 
 const listingSchema = mongoose.Schema({
   id: Number,
@@ -15,6 +16,12 @@ const listingSchema = mongoose.Schema({
   },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+  ratings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Rating",
+    },
+  ],
 });
 
 const Listing = mongoose.model("Listing", listingSchema);

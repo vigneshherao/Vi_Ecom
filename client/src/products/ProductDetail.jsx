@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useProductDetails } from "../utils/hooks/useProductDetails";
 import { addProductImage } from "../utils/slice/productSlice";
 import { addtoCart, buy } from "../utils/constants/stringConstants";
+import Review from "./Review";
 
 const ProductDetail = () => {
   const productDetail = useSelector((store) => store?.product?.productDetail);
   const productImage = useSelector((store) => store?.product?.productImage);
+  console.log(productDetail)
   const { title, description, price, category } = productDetail;
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -54,6 +56,7 @@ const ProductDetail = () => {
             {buy}
           </button>
         </div>
+          <Review productId={id}/>
       </div>
     </div>
   );
