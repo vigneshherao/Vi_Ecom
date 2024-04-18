@@ -6,6 +6,7 @@ const Listing = require("./models/listing");
 const SignUp = require("./models/signUp");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError")
+const ValidationError = require("./utils/ValidationError")
 
 const cors = require("cors");
 const corsOptions = {
@@ -21,6 +22,9 @@ mongoose
   .then(() => console.log("Connected!"))
   .catch((error) => console.log(error));
 
+
+
+
 app.get("/", async (req, res) => {
   try {
     const data = await Listing.find({})
@@ -33,16 +37,16 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.post("/login",wrapAsync(async (req, res) => {
-    const { name, email, password } = req.body;
-    const newUser = new SignUp({
-      name,
-      email,
-      password,
-    });
-    await newUser.save();
-    res.send("working");
-  })
+app.post("/login",ValidationError,wrapAsync(async (req, res) => {
+  const { name, email, password } = req.body;
+  const newUser = new SignUp({
+    name,
+    email,
+    password,
+  });
+  await newUser.save();
+  res.send("working");
+})
 );
 
 app.get("/product/:id", async (req, res) => {
@@ -60,7 +64,7 @@ app.get("/product/:id", async (req, res) => {
 
 
 app.all("*",(req,res,next)=>{
-    next(new ExpressError(500,"Error occured in req"));
+    next(new ExpressError(500,"Error occured in request"));
 })
 
 

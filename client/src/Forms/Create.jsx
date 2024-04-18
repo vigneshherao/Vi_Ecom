@@ -10,7 +10,7 @@ const Create = () => {
   const username = useRef(null);
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
-  const navigate = useNavigate();
+
 
   const handleOnClick = async (e) => {
     e.preventDefault();
@@ -29,21 +29,18 @@ const Create = () => {
       });
       const errorMessage = await response.text();
       const preContent = errorMessage.match(/<pre>([^<]+)<br/s);
-      if (preContent && preContent.length > 1) {
-        setAlertMessage(preContent[1]);
-        setAlert(true)
-      
-      }else{
-        setAlertMessage("User Created!")
+      if (preContent && preContent.length > 1 && preContent[1] === "working") {
+        setAlertMessage("User Created!");
+      } else {
+        setAlertMessage(preContent ? preContent[1] : "User Created!");
       }
-      
+      setAlert(true);
     }
   };
-
   return (
     <div>
       <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
-      {alert? <Alert data={alertMessage} />:null}
+        {alert ? <Alert data={alertMessage} /> : null}
         <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg border">
           <h2 className="text-3xl font-semibold text-black mb-4">SIGN UP</h2>
           <form onSubmit={handleOnClick}>

@@ -1,9 +1,11 @@
 import React from "react";
 
+
 const Alerts = ({ data }) => {
   let bgColorClass = "bg-red-300";
   if (data === "User Created!") {
     bgColorClass = "bg-green-400";
+    
   }
 
   return (
