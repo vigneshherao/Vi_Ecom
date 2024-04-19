@@ -6,7 +6,7 @@ import { logo } from "../utils/constants/stringConstants";
 
 const Head = () => {
   return (
-    <div className="h-20 bg-white flex justify-between items-center px-[5%] shadow-lg">
+    <div className="h-24 bg-white flex justify-between items-center px-[5%] drop-shadow-md">
       <div>
         <h3 className="font-bold text-2xl">{logo}</h3>
       </div>
