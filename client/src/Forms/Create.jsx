@@ -10,6 +10,7 @@ const Create = () => {
   const username = useRef(null);
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
+  const navigate = useNavigate();
 
 
   const handleOnClick = async (e) => {
@@ -28,9 +29,11 @@ const Create = () => {
         body: JSON.stringify({ name, email, password }),
       });
       const errorMessage = await response.text();
+      console.log(errorMessage)
       const preContent = errorMessage.match(/<pre>([^<]+)<br/s);
-      if (preContent && preContent.length > 1 && preContent[1] === "working") {
+      if (preContent) {
         setAlertMessage("User Created!");
+        navigate("/");
       } else {
         setAlertMessage(preContent ? preContent[1] : "User Created!");
       }

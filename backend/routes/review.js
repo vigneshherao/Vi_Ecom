@@ -1,8 +1,8 @@
 const express = require("express");
 const wrapAsync = require("../utils/wrapAsync");
-const validateReview = require("../utils/ValidationError");
+const {validateReview} = require("../utils/ValidationError");
 const Rating = require("../models/review");
-const router = express.router({mergeParams:true});
+const router = express.Router({mergeParams:true});
 
 //review route for rating
 
