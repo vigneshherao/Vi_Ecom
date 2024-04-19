@@ -7,9 +7,8 @@ const SignUp = require("./models/signUp");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
 const validateListing = require("./utils/ValidationError");
-const validateReview = require("./utils/ValidationError");
-const Rating = require("./models/review");
-
+const product = require("./routes/product")
+const review = require("./routes/review")
 const cors = require("cors");
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -24,17 +23,14 @@ mongoose
   .then(() => console.log("Connected!"))
   .catch((error) => console.log(error));
 
-app.get("/", async (req, res) => {
-  try {
-    const data = await Listing.find({})
-      .then((data) => res.send(data))
-      .catch(() => {
-        console.log("data is not found in db");
-      });
-  } catch (error) {
-    console.log(error);
-  }
-});
+  
+app.use("/product",product);
+app.use("/product/:id/rating",review)
+
+app.get("/", wrapAsync(async (req, res) => {
+  const data = await Listing.find({})
+  res.send(data);
+}));
 
 app.post(
   "/login",
@@ -51,38 +47,9 @@ app.post(
   })
 );
 
-app.get("/product/:id", async (req, res) => {
-  let { id } = req.params;
-  try {
-    await Listing.findById(id).populate("ratings")
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((error) => console.log(error));
-  } catch (error) {
-    console.log(error);
-  }
-});
 
-//review route for rating
 
-app.post(
-  "/product/:id/rating",
-  validateReview,
-  wrapAsync(async (req, res) => {
-    const { rating, comment } = req.body;
-    const product = await Listing.findById(req.params.id);
-    const ratingDB = new Rating({
-      rating,
-      comment,
-    });
-    await ratingDB.save();
-    const ok = product.ratings.push(ratingDB);
 
-    await product.save();
-    res.sendStatus(200);
-  })
-);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(500, "Error occured in request"));
