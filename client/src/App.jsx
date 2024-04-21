@@ -4,8 +4,6 @@ import Head from "./Header/Head";
 import Footer from "./Footer/Footer";
 import ProductDetail from "./products/ProductDetail";
 import Create from "./Forms/Create";
-import Cart from "./Cart/Cart";
-import Banner from "./Banner/Banner";
 
 
 function App() {

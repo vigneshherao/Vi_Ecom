@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import handleValidation from "../utils/validation/loginVaidation";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../utils/slice/userSlice";
 
 const Create = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -12,6 +14,11 @@ const Create = () => {
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const user = useSelector((store) => store?.user?.userDetail?.user);
+
+  console.log(user);
 
   const handleOnClick = async (e) => {
     e.preventDefault();
@@ -20,23 +27,32 @@ const Create = () => {
     const password = passwordInput.current.value;
     const validateMessage = handleValidation(email, password);
     setValidMessage(validateMessage);
+
     if (!validateMessage) {
-      const response = await fetch("http://localhost:8080/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
-      const errorMessage = await response.text();
-      console.log(errorMessage);
-      const preContent = errorMessage.match(/<pre>([^<]+)<br/s);
-      if (preContent) {
-        setAlertMessage(preContent);
-        //navigate("/");
-      } else {
-        setAlertMessage(preContent ? preContent[1] : "User Created!");
+      try {
+        const response = await fetch("http://localhost:8080/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+        });
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+          dispatch(addUser(responseData.passport));
+          setAlertMessage("User Created!");
+          navigate("/");
+        } else {
+          const errorMessage = await response.text();
+          console.error("Signup failed:", errorMessage);
+          setAlertMessage("Signup failed. Please try again later.");
+        }
+      } catch (error) {
+        console.error("Signup failed:", error.message);
+        setAlertMessage("Signup failed. Please try again later.");
       }
+
       setAlert(true);
     }
   };
@@ -52,9 +68,13 @@ const Create = () => {
       },
       body: JSON.stringify({ username, password }),
     });
+
     if (response.ok) {
+      const responseData = await response.json();
+      dispatch(addUser(responseData.passport));
       setAlertMessage("Login successful!");
       setAlert(true);
+      navigate("/");
     } else {
       const errorMessage = await response.text();
       console.log(errorMessage);
@@ -140,7 +160,7 @@ const Create = () => {
                   className="cursor-pointer text-gray-500 underline hover:text-red-500"
                   onClick={() => setIsLogin(!isLogin)}
                 >
-                  New User? SignUp 
+                  New User? SignUp
                 </p>
               ) : (
                 <p

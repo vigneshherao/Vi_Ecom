@@ -9,10 +9,9 @@ const productRouter = require("./routes/product");
 const reviewRouter = require("./routes/review");
 const userRouter = require("./routes/user");
 const cors = require("cors");
-app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from your React app
-  credentials: true, // Allow credentials
-}));
+const corsOptions = {
+  origin: "http://localhost:5173",
+};
 const sessionOptions = {
   secret: "thisiscode",
   resave: false,
@@ -52,6 +51,7 @@ mongoose
 app.get(
   "/",
   wrapAsync(async (req, res) => {
+    console.log(req.session)
     const data = await Listing.find({});
     res.send(data);
   })
@@ -67,7 +67,7 @@ app.all("*", (req, res, next) => {
   next(new ExpressError(500, "Error occured in request"));
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res,next) => {
   console.log("Error Found");
   let { status = 404, message = "unhalded" } = err;
   res.status(status).send(message);
