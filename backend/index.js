@@ -67,6 +67,8 @@ app.all("*", (req, res, next) => {
   next(new ExpressError(500, "Error occured in request"));
 });
 
+
+
 app.use((err, req, res,next) => {
   console.log("Error Found");
   let { status = 404, message = "unhalded" } = err;

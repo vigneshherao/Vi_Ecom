@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../utils/slice/userSlice";
+import { Link } from "react-router-dom";
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Account = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-[90%] mx-16 h-screen p-10 border">
+    <div className="bg-gray-100  w-full h-screen p-10 border">
       <div className="flex justify-between px-5 items-center">
         <div>
           <h2 className="text-center text-3xl font-extralight bg-blue-300 p-2">
@@ -43,9 +44,11 @@ const Account = () => {
             src="https://www.pngall.com/wp-content/uploads/10/Plus-Symbol-Background-PNG.png"
             className="h-10 w-10 m-auto"
           />
-          <button className="bg-black p-2 text-white mt-4 font-semibold hover:text-blue-300">
+        <Link to={"/add"}>
+        <button className="bg-black p-2 text-white mt-4 font-semibold hover:text-blue-300">
             Add Product
           </button>
+        </Link>
         </div>
         <div className="justify-center items-center m-3">
           <img

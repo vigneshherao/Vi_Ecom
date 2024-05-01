@@ -3,6 +3,10 @@ import { FaUser } from "react-icons/fa";
 import { BsCartFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { logo } from "../utils/constants/stringConstants";
+import { Link } from "react-router-dom";
+
+
+
 
 const Head = () => {
   return (
@@ -19,7 +23,7 @@ const Head = () => {
             <BsCartFill />
           </li>
           <li>
-            <FaUser />
+            <Link to={"user"}><FaUser /></Link>
           </li>
         </ul>
       </div>

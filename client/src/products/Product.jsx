@@ -3,7 +3,6 @@ import { addtoCart } from "../utils/constants/stringConstants";
 import {Link} from"react-router-dom";
 
 const Product = ({ productDetail }) => {
-  console.log(productDetail);
   const { price, images, title ,_id} = productDetail;
   return (
     <div className="flex flex-col  justify-between w-72 min-h-[450px] rounded overflow-hidden shadow-lg p-5 border m-5 transition-transform duration-200 ease-in-out transform hover:scale-95 sm:hover:scale-105">

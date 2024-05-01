@@ -25,3 +25,11 @@ export const categoriesItems = [
     }
 ];
 
+
+
+
+export const addProduct={
+    productHead:"Product Details:",
+    categoryHead:"Product Category:",
+    submit:"Add Product"
+}

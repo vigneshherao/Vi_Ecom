@@ -4,6 +4,8 @@ import Head from "./Header/Head";
 import Footer from "./Footer/Footer";
 import ProductDetail from "./products/ProductDetail";
 import Create from "./Forms/Create";
+import AddProducts from "./Forms/AddProducts";
+import Account from "./User/Account"
 
 
 function App() {
@@ -20,11 +22,18 @@ function App() {
       path: "/login",
       element: <Create/>,
     },
+    {
+      path: "/user",
+      element: <Account/>,
+    },
+    {
+      path: "/add",
+      element: <AddProducts/>,
+    },
   ]);
 
   return (
     <div>
-      <Head />
       <RouterProvider router={appRouter} />
       <Footer/>
     </div>
