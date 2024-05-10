@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const Categories = () => {
   return (
@@ -6,7 +8,7 @@ const Categories = () => {
       <div className="home-container px-[4%] py-14">
         <div className="container">
           <div className="grid-container">
-            <div className="featured grid-one">
+          <div className="featured grid-one">
               <div id="img1" className="all lil-overlay"></div>
               <img
                 src={

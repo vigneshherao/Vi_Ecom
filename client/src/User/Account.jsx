@@ -32,13 +32,18 @@ const Account = () => {
             Hello {user}
           </h2>
         </div>
+        <div>
+          <h2 className="text-center text-3xl bg-black text-white font-semibold p-2 rounded-md">
+           <Link to={"/"}>Home</Link>
+          </h2>
+        </div>
         <div className="items-center justify-center">
           <button className="bg-blue-500 text-white p-2" onClick={handleLogout}>
             Logout
           </button>
         </div>
       </div>
-      <div className="flex justify-evenly flex-wrap p-10 mt-10">
+      <div className="flex justify-evenly flex-wrap p-10 mt-20">
         <div className="justify-center items-center m-3">
           <img
             src="https://www.pngall.com/wp-content/uploads/10/Plus-Symbol-Background-PNG.png"

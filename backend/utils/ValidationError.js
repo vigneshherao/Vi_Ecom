@@ -1,5 +1,5 @@
 const SignUpSchema = require("../schema");
-const reviewSchema = require("../reviewSchema");
+const { reviewSchema } = require("../reviewSchema");
 const productSchema = require("../productSchema");
 const ExpressError = require("./ExpressError");
 
