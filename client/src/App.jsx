@@ -6,6 +6,8 @@ import ProductDetail from "./products/ProductDetail";
 import Create from "./Forms/Create";
 import AddProducts from "./Forms/AddProducts";
 import Account from "./User/Account"
+import Product from "./products/Product";
+import CategoriesItems from "./Categories/CategoriesItems";
 
 
 function App() {
@@ -17,6 +19,10 @@ function App() {
     {
       path: "/product/:id",
       element: <ProductDetail/>,
+    },
+    {
+      path: "/category/:id",
+      element: <CategoriesItems/>,
     },
     {
       path: "/login",
