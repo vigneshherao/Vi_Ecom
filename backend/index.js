@@ -48,6 +48,7 @@ mongoose
   .then(() => console.log("Connected!"))
   .catch((error) => console.log(error));
 
+//main 
 app.get(
   "/",
   wrapAsync(async (req, res) => {

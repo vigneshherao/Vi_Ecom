@@ -19,6 +19,7 @@ router.post(
   validateProduct,
   wrapAsync(async (req, res) => {
     const productDetail = req.body;
+    console.log(productDetail);
     const newProduct = new Listing(productDetail);
     await newProduct.save();
     res.status(200).json({ message: "Product added successfully" });

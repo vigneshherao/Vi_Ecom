@@ -72,7 +72,7 @@ const AddProductForm = () => {
           <input
             className="border rounded-md px-4 py-2 w-1/3"
             type="number"
-            name="product[price]  "
+            name="product[price]"
             placeholder="Price"
           />
         </div>
