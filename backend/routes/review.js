@@ -3,6 +3,7 @@ const wrapAsync = require("../utils/wrapAsync");
 const {validateReview} = require("../utils/ValidationError");
 const Rating = require("../models/review");
 const router = express.Router({mergeParams:true});
+const Listing = require("../models/listing");
 
 //review route for rating
 
@@ -18,6 +19,7 @@ router.post(
       });
       await ratingDB.save();
       const ok = product.ratings.push(ratingDB);
+      console.log(ok)
       await product.save();
       res.sendStatus(200);
     })
