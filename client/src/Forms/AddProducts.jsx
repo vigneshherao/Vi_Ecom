@@ -24,6 +24,7 @@ const AddProductForm = () => {
         image: formData.get("category[image]"),
       },
     };
+
     try {
       const response = await fetch("http://localhost:8080/product/add", {
         method: "POST",
@@ -32,15 +33,17 @@ const AddProductForm = () => {
         },
         body: JSON.stringify(productDetail),
       });
-      console.log(response);
+
       if (response.ok) {
-        toast('Here is your toast.');;
+        toast.success('Product added successfully!');
+      } else {
+        const errorText = await response.text();
+        toast.error(`Failed to add product: ${errorText}`);
       }
 
-    
       formRef.current.reset();
     } catch (error) {
-      console.error("There was a problem adding the product:", error.message);
+      toast.error(`Error: ${error.message}`);
     }
   };
 
@@ -51,10 +54,11 @@ const AddProductForm = () => {
       className="max-w-md mx-auto p-4 bg-gray-100 shadow-md rounded-lg"
     >
       <div className="mb-4">
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="id"
-        >
+      <Toaster
+  position="bottom-left"
+  reverseOrder={true}
+/>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="id">
           {addProduct.productHead}
         </label>
         <div className="flex">
@@ -108,11 +112,8 @@ const AddProductForm = () => {
         </div>
       </div>
       <div className="mb-4">
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="category[id]"
-        >
-         {addProduct.categoryHead}
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category[id]">
+          {addProduct.categoryHead}
         </label>
         <div className="mb-4">
           <div className="flex">
@@ -141,7 +142,7 @@ const AddProductForm = () => {
         className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         type="submit"
       >
-       {addProduct.submit}
+        {addProduct.submit}
       </button>
     </form>
   );
