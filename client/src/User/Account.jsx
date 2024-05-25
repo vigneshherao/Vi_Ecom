@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../utils/slice/userSlice";
 import { Link } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 const Account = () => {
   const dispatch = useDispatch();
