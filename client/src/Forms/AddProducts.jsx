@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { addProduct } from "../utils/constants/stringConstants";
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddProductForm = () => {
   const formRef = useRef(null);
@@ -32,11 +33,11 @@ const AddProductForm = () => {
         body: JSON.stringify(productDetail),
       });
       console.log(response);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      if (response.ok) {
+        toast('Here is your toast.');;
       }
 
-      console.log("Product added successfully!");
+    
       formRef.current.reset();
     } catch (error) {
       console.error("There was a problem adding the product:", error.message);

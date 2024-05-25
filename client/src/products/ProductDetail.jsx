@@ -5,6 +5,7 @@ import { useProductDetails } from "../utils/hooks/useProductDetails";
 import { addProductImage } from "../utils/slice/productSlice";
 import { addtoCart, buy } from "../utils/constants/stringConstants";
 import Review from "./Review";
+import { Toaster } from "react-hot-toast";
 
 const ProductDetail = () => {
   const productDetail = useSelector((store) => store?.product?.productDetail);
@@ -20,6 +21,10 @@ const ProductDetail = () => {
   return (
     <div className="mt-10 sm:m-20 sm:mt-10 flex px-10 sm:px-28 flex-col justify-between lg:flex-row gap-14 lg:items-center sm:mb-0 pb-16">
       <div className="flex flex-col gap-6 lg:w-2/4">
+      <Toaster
+  position="bottom-left"
+  reverseOrder={true}
+/>
         {productDetail.images && (
           <>
             <img

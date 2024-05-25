@@ -26,6 +26,10 @@ const Account = () => {
 
   return (
     <div className="bg-gray-100  w-full h-screen p-10 border">
+            <Toaster
+  position="bottom-left"
+  reverseOrder={true}
+/>
       <div className="flex justify-between px-5 items-center">
         <div>
           <h2 className="text-center text-3xl font-extralight bg-blue-300 p-2">

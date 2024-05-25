@@ -17,6 +17,6 @@
     "express-session": "^1.18.0",
     "joi": "^17.12.3",
     "mongoose": "^8.3.1",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.1"
   }
 }

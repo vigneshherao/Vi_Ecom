@@ -1,7 +1,7 @@
 import React from "react";
 import { addtoCart } from "../utils/constants/stringConstants";
 import {Link} from"react-router-dom";
-
+import toast, { Toaster } from 'react-hot-toast';
 const Product = ({ productDetail }) => {
   const { price, images, title ,_id} = productDetail;
   return (
@@ -12,7 +12,7 @@ const Product = ({ productDetail }) => {
         <p className="text-gray-700 font-mono text-base font-bold">
           Rs: {price} Only!
         </p>
-        <button className="w-full mt-2 text-center bg-black text-white font-semibold p-1 hover:bg-gray-300 hover:text-black">
+        <button className="w-full mt-2 text-center bg-black text-white font-semibold p-1 hover:bg-gray-300 hover:text-black" onClick={()=> toast.success('Here is your toast.')}>
           {addtoCart}
         </button>
       </div>

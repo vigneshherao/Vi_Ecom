@@ -64,15 +64,16 @@ app.use("/product", productRouter);
 app.use("/product/:id/rating", reviewRouter);
 app.use("/", userRouter);
 
+
+//Handling Error 
+
 app.all("*", (req, res, next) => {
   next(new ExpressError(500, "Error occured in request"));
 });
 
 
-
 app.use((err, req, res,next) => {
-  console.log("Error Found");
-  let { status = 404, message = "unhalded" } = err;
+  let { status = 404, message = "Something Went Wrong!" } = err;
   res.status(status).send(message);
 });
 
