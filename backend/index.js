@@ -68,7 +68,7 @@ app.use("/", userRouter);
 //Handling Error 
 
 app.all("*", (req, res, next) => {
-  next(new ExpressError(500, "Error occured in request"));
+  next(new ExpressError(404, "The page you are requesting Not Found!"));
 });
 
 

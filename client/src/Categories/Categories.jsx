@@ -27,7 +27,7 @@ const Categories = () => {
               </Link>
               <img
                 src={
-                  "https://i0.wp.com/soundzstore.com/wp-content/uploads/2020/12/Favicon.png?fit=819%2C1024&ssl=1"
+                  "https://img.freepik.com/premium-psd/woman-with-headphones-her-head-listening-music_176841-36707.jpg"
                 }
                 alt="img2"
               />
@@ -41,7 +41,7 @@ const Categories = () => {
               </Link>
               <img
                 src={
-                  "https://images4.alphacoders.com/260/260758.jpg"
+                  "https://img.freepik.com/free-photo/picture-frame-with-abstract-art-by-pink-velvet-armchair_53876-128125.jpg?t=st=1716638751~exp=1716642351~hmac=2160cc89aa18771609dc34f555d4139cd039889da304d382561e8a551115237a&w=360"
                 }
                 alt="img3"
               />
