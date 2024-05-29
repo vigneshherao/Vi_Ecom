@@ -48,103 +48,98 @@ const AddProductForm = () => {
   };
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-4 bg-gray-100 shadow-md rounded-lg"
-    >
-      <div className="mb-4">
-      <Toaster
-  position="bottom-left"
-  reverseOrder={true}
-/>
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="id">
-          {addProduct.productHead}
-        </label>
-        <div className="flex">
-          <input
-            className="border rounded-md px-4 py-2 w-1/3 mr-2"
-            type="number"
-            name="product[id]"
-            placeholder="Number"
-          />
-          <input
-            className="border rounded-md px-4 py-2 w-1/3 mr-2"
-            type="text"
-            name="product[title]"
-            placeholder="Title"
-          />
-          <input
-            className="border rounded-md px-4 py-2 w-1/3"
-            type="number"
-            name="product[price]"
-            placeholder="Price"
-          />
-        </div>
-      </div>
-      <div className="mb-4">
-        <textarea
-          className="border rounded-md px-4 py-2 w-full"
-          name="product[description]"
-          placeholder="Write about Product Description.."
-        />
-      </div>
-      <div className="mb-4">
-        <div className="flex">
-          <input
-            className="border rounded-md px-4 py-2 w-1/3 mr-2"
-            type="text"
-            name="product[image1]"
-            placeholder="Image Url"
-          />
-          <input
-            className="border rounded-md px-4 py-2 w-1/3 mr-2"
-            type="text"
-            name="product[image2]"
-            placeholder="Image Url"
-          />
-          <input
-            className="border rounded-md px-4 py-2 w-1/3"
-            type="text"
-            name="product[image3]"
-            placeholder="Image Url"
-          />
-        </div>
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category[id]">
-          {addProduct.categoryHead}
-        </label>
-        <div className="mb-4">
-          <div className="flex">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <Toaster position="bottom-left" reverseOrder={true} />
+      <form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-8 space-y-6"
+      >
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">{addProduct.productHead}</h2>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input
-              className="border rounded-md px-4 py-2 w-full"
+              className="border rounded-md px-4 py-2"
               type="number"
-              name="category[id]"
-              placeholder="Number"
+              name="product[id]"
+              placeholder="Product ID"
+              required
             />
             <input
-              className="border rounded-md px-4 py-2 w-full"
+              className="border rounded-md px-4 py-2"
               type="text"
-              name="category[name]"
-              placeholder="which category"
+              name="product[title]"
+              placeholder="Title"
+              required
             />
             <input
-              className="border rounded-md px-4 py-2 w-full"
+              className="border rounded-md px-4 py-2"
+              type="number"
+              name="product[price]"
+              placeholder="Price"
+              required
+            />
+          </div>
+          <textarea
+            className="border rounded-md px-4 py-2 w-full"
+            name="product[description]"
+            placeholder="Write about Product Description.."
+            required
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input
+              className="border rounded-md px-4 py-2"
               type="text"
-              name="category[image]"
-              placeholder="Image"
+              name="product[image1]"
+              placeholder="Image URL 1"
+            />
+            <input
+              className="border rounded-md px-4 py-2"
+              type="text"
+              name="product[image2]"
+              placeholder="Image URL 2"
+            />
+            <input
+              className="border rounded-md px-4 py-2"
+              type="text"
+              name="product[image3]"
+              placeholder="Image URL 3"
             />
           </div>
         </div>
-      </div>
-      <button
-        className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        type="submit"
-      >
-        {addProduct.submit}
-      </button>
-    </form>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">{addProduct.categoryHead}</h2>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input
+              className="border rounded-md px-4 py-2"
+              type="number"
+              name="category[id]"
+              placeholder="Category ID"
+              required
+            />
+            <input
+              className="border rounded-md px-4 py-2"
+              type="text"
+              name="category[name]"
+              placeholder="Category Name"
+              required
+            />
+            <input
+              className="border rounded-md px-4 py-2"
+              type="text"
+              name="category[image]"
+              placeholder="Category Image URL"
+            />
+          </div>
+        </div>
+        <button
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
+          type="submit"
+        >
+          {addProduct.submit}
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -8,23 +8,30 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-[#E6E7E8] shadow-top h-36 text-center pt-5 sm:p-5 w-full">
-      <div className="flex justify-center">
-        <ul className="flex gap-4 sm:gap-20 py-5">
-          {footerContent.map((item) => (
-            <li className="text-black font-bold" key={item}>
-              {item}
-            </li>
-          ))}
-        </ul>
+    <div className="bg-gray-100 mt-5 shadow-md py-5 w-full border-t-cyan-200">
+      <div className="container mx-auto text-center">
+        <div className="flex justify-center mb-4">
+          <ul className="flex flex-wrap gap-4 sm:gap-10">
+            {footerContent.map((item) => (
+              <li
+                className="text-gray-800 font-semibold text-sm sm:text-base hover:text-blue-600 transition-colors duration-200"
+                key={item}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <p className="text-gray-600 text-sm sm:text-base">
+          &#169; {footerProfile}
+          <a
+            href={profileLink}
+            className="font-semibold text-black hover:text-blue-800 underline ml-1 transition-colors duration-200"
+          >
+            {nameMe}
+          </a>
+        </p>
       </div>
-      <p>
-        &#169;
-        {footerProfile}
-        <a href={profileLink} className="font-semibold underline ml-1">
-          {nameMe}
-        </a>
-      </p>
     </div>
   );
 };
