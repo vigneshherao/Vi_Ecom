@@ -8,6 +8,7 @@ import AddProducts from "./Forms/AddProducts";
 import Account from "./User/Account"
 import Product from "./products/Product";
 import CategoriesItems from "./Categories/CategoriesItems";
+import Cart from "./Cart/Cart";
 
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
     {
       path: "/add",
       element: <AddProducts/>,
+    },
+    {
+      path: "/cart",
+      element: <Cart/>,
     },
   ]);
 

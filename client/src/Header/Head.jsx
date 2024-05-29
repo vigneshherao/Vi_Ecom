@@ -27,7 +27,8 @@ const Head = () => {
             <FaSearch />
           </li>
           <li>
-            <BsCartFill />
+          <Link to={"cart"}>  <BsCartFill /></Link>
+          
           </li>
           <li>
             <Link to={"user"}><FaUser /></Link>

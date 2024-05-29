@@ -5,6 +5,7 @@ import "./Categories/c.css";
 import { useSelector } from "react-redux";
 import Head from "./Header/Head";
 import { Toaster } from "react-hot-toast";
+import Cart from "./Cart/Cart"
 
 const HomePage = () => {
   const products = useSelector((store) => store?.product?.products);
@@ -27,6 +28,7 @@ const HomePage = () => {
           <Product key={product._id} productDetail={product} />
         ))}
       </div>
+      <Cart/>
     </div>
   );
 };
