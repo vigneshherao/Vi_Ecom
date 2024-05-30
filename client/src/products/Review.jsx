@@ -42,11 +42,11 @@ const Review = ({ productId }) => {
   }
 
   return (
-    <div className="bg-gray-100 p-2">
-      <div>
-        <h2 className="font-thin text-black">Rate And Review Product</h2>
-        <form onSubmit={handleReview}>
-          <label>Rate</label>
+    <div className="bg-gray-100 p-4 rounded-lg">
+      <h2 className="text-lg font-semibold mb-4">Rate and Review Product</h2>
+      <form onSubmit={handleReview}>
+        <div className="flex flex-col mb-4">
+          <label htmlFor="rating" className="mb-1">Rate</label>
           <input
             ref={ratingInput}
             className="w-full"
@@ -54,25 +54,27 @@ const Review = ({ productId }) => {
             min="1"
             max="5"
             id="rating"
-            name="rating[rating]"
-          ></input>
-          <br />
-          <label>Review</label>
-          <br></br>
+            name="rating"
+          />
+          <span className="text-sm text-gray-500">{ratingInput.current?.value}/5</span>
+        </div>
+        <div className="flex flex-col mb-4">
+          <label htmlFor="comment" className="mb-1">Review</label>
           <textarea
             ref={commentInput}
-            className="border w-full p-2"
+            className="border w-full p-2 rounded-md"
             type="text"
-            placeholder="Give a review..."
+            placeholder="Write your review..."
             id="comment"
-            name="rating[comment]"
+            name="comment"
           ></textarea>
-          <button className="bg-black text-white p-2 mt-2" type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
-      <div>
+        </div>
+        <button className="bg-black text-white py-2 px-4 rounded-md" type="submit">
+          Submit
+        </button>
+      </form>
+      <div className="mt-4">
+        <h3 className="text-lg font-semibold mb-2">Recent Reviews</h3>
         {ratings.map((rating) => (
           <ReviewCard key={rating._id} data={rating} />
         ))}

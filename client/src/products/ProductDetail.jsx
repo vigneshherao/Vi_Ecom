@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 const ProductDetail = () => {
   const productDetail = useSelector((store) => store?.product?.productDetail);
   const productImage = useSelector((store) => store?.product?.productImage);
-  console.log(productDetail)
+  console.log(productDetail);
   const { title, description, price, category } = productDetail;
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -19,12 +19,9 @@ const ProductDetail = () => {
   if (!productDetail) return null;
 
   return (
-    <div className="mt-10 sm:m-20 sm:mt-10 flex px-10 sm:px-28 flex-col justify-between lg:flex-row gap-14 lg:items-center sm:mb-0 pb-16">
-      <div className="flex flex-col gap-6 lg:w-2/4">
-      <Toaster
-  position="bottom-left"
-  reverseOrder={true}
-/>
+    <div className="mt-10 sm:m-20 sm:mt-10 flex flex-col md:flex-row px-10 sm:px-28 gap-14 lg:items-center sm:mb-0 pb-16">
+      <div className="md:w-1/2 flex flex-col gap-6">
+        <Toaster position="bottom-left" reverseOrder={true} />
         {productDetail.images && (
           <>
             <img
@@ -46,7 +43,7 @@ const ProductDetail = () => {
           </>
         )}
       </div>
-      <div className="flex flex-col gap-4 lg:w-2/4 bg-gray-200 lg:bg-white p-2">
+      <div className="md:w-1/2 flex flex-col gap-4 bg-gray-200 lg:bg-white p-2">
         <div>
           <span className="text-red-700 font-semibold">{category?.name}</span>
           <h1 className="text-3xl font-bold">{title}</h1>
@@ -61,7 +58,7 @@ const ProductDetail = () => {
             {buy}
           </button>
         </div>
-          <Review productId={id}/>
+        <Review productId={id} />
       </div>
     </div>
   );
