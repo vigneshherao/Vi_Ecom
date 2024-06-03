@@ -74,7 +74,7 @@ const Review = ({ productId }) => {
         </button>
       </form>
       <div className="mt-4">
-        <h3 className="text-lg font-semibold mb-2">Recent Reviews</h3>
+        <h3 className="text-lg font-semibold mb-2">Reviews</h3>
         {ratings.map((rating) => (
           <ReviewCard key={rating._id} data={rating} productId={productId} />
         ))}

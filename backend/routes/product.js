@@ -26,4 +26,20 @@ router.post(
   })
 );
 
+
+
+router.delete(
+  "/:id/delete",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const deletedProduct = await Listing.findByIdAndDelete(id);
+    if (deletedProduct) {
+      res.status(200).json({ message: "Listing deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Listing not found" });
+    }
+  })
+);
+
+
 module.exports = router;

@@ -22,7 +22,6 @@ const Product = ({ productDetail }) => {
           {addtoCart}
         </button>
       </div>
-      <Toaster position="bottom-left" reverseOrder={false} />
     </div>
   );
 };
