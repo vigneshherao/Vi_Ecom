@@ -21,7 +21,12 @@ const Head = () => {
         <h3 className="font-bold text-2xl">{logo}</h3>
       </div>
       <div className="cursor-pointer flex justify-center items-center">
-        {searchState ? <input className="mr-10 bg-white border shadow-md px-3 py-1 w-[300px] rounded-r-full rounded-l-full" type="text" placeholder="Search"/>:null}
+        {searchState ? <input 
+  className="mr-10 bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300 shadow-lg px-4 py-2 w-[300px] rounded-full text-black focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition duration-300 ease-in-out" 
+  type="text" 
+  placeholder="Search" 
+/>
+:null}
         <ul className="flex gap-10 pr-5 cursor-pointer">
           <li onClick={searchHandle}>
             <FaSearch />

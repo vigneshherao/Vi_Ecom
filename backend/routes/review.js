@@ -26,4 +26,15 @@ router.post(
   );
 
 
+  router.post("/:rating_id", wrapAsync(async (req, res) => {
+    const { rating_id } = req.params;
+    const deletedRating = await Rating.findByIdAndDelete(rating_id);
+    if (deletedRating) {
+        res.status(200).json({ message: "Rating deleted successfully" });
+    } else {
+        res.status(404).json({ message: "Rating not found" });
+    }
+}));
+
+
   module.exports = router;
