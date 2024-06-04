@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../utils/slice/userSlice";
-import { Link } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import {toast, Toaster } from "react-hot-toast";
 import { FaPlusCircle, FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const Account = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const user = useSelector((store) => store?.user?.userDetail?.user);
 
@@ -19,7 +20,8 @@ const Account = () => {
     })
       .then((response) => {
         dispatch(logoutUser());
-        console.log("logout successful");
+        navigate("/");
+        toast.success("logout successful");
       })
       .catch((error) => {
         console.log(error);

@@ -4,12 +4,14 @@ import { BsCartFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { logo } from "../utils/constants/stringConstants";
 import { Link } from "react-router-dom";
+import {useSelector} from "react-redux"
 
 
 
 
 const Head = () => {
   const [searchState,setSearchState] = useState(false);
+  const user = useSelector((store) => store?.user?.userDetail?.user);
   const searchHandle = ()=>{
       setSearchState(!searchState);
       
@@ -36,7 +38,7 @@ const Head = () => {
           
           </li>
           <li>
-            <Link to={"user"}><FaUser /></Link>
+            <Link to={user?"user":"login"}><FaUser /></Link>
           </li>
         </ul>
       </div>
