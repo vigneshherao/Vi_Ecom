@@ -9,6 +9,8 @@ const productRouter = require("./routes/product");
 const reviewRouter = require("./routes/review");
 const userRouter = require("./routes/user");
 const cors = require("cors");
+
+//options for the packages installed
 const corsOptions = {
   origin: "http://localhost:5173",
 };
@@ -22,6 +24,8 @@ const sessionOptions = {
     httpOnly:true
   }
 };
+
+
 const session = require("express-session");
 const passport = require("passport")
 const LocalStrategy = require("passport-local");

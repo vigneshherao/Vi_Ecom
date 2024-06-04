@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/slice/userSlice";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Create = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -39,14 +40,13 @@ const Create = () => {
         });
         if (response.ok) {
           const responseData = await response.json();
-          console.log(responseData);
           dispatch(addUser(responseData.passport));
           setAlertMessage("User Created!");
+          toast.success("Registered Sucessfully!");
           navigate("/");
         } else {
           const errorMessage = await response.text();
-          console.error("Signup failed:", errorMessage);
-          setAlertMessage("Signup failed. Please try again later.");
+          toast.error("Signup failed. Please try again later.");
         }
       } catch (error) {
         console.error("Signup failed:", error.message);
@@ -72,21 +72,18 @@ const Create = () => {
     if (response.ok) {
       const responseData = await response.json();
       dispatch(addUser(responseData.passport));
-      setAlertMessage("Login successful!");
-      setAlert(true);
+      toast.success("Login Sucessfully!");
       navigate("/");
     } else {
       const errorMessage = await response.text();
-      console.log(errorMessage);
-      setAlertMessage("Login failed. Please check your credentials.");
-      setAlert(true);
+      toast.error("Login failed. Please check your credentials."+ errorMessage);
     }
   };
 
   return (
     <div>
+       <Toaster position="bottom-left" reverseOrder={true} />
       <div className="h-screen flex flex-col items-center ustify-start pt-36 md:pt-16  bg-gray-100">
-        {alert ? <Alert data={alertMessage} /> : null}
         <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg border">
           <h2 className="text-3xl font-semibold text-black mb-4">
             {isLogin ? "Login" : "SIGN UP"}
