@@ -13,6 +13,11 @@ const Review = ({ productId }) => {
     const rating = ratingInput.current.value;
     const comment = commentInput.current.value;
 
+    if (!comment) {
+      toast.error("Review comments are required.");
+      return;
+    }
+
     try {
       const response = await fetch(
         `http://localhost:8080/product/${productId}/rating`,

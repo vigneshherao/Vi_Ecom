@@ -16,10 +16,7 @@ const HomePage = () => {
   return (
     <div className="px-[5%]">
       <Head />
-      <Toaster
-  position="bottom-left"
-  reverseOrder={true}
-/>
+      <Toaster position="bottom-left" reverseOrder={true} />
       <Categories />
       <h3 className="font-bold text-2xl ">PRODUCTS</h3>
       <div className="flex flex-wrap justify-center">
