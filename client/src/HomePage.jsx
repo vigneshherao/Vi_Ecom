@@ -6,7 +6,7 @@ import "./Categories/c.css";
 import { useSelector } from "react-redux";
 import Head from "./Header/Head";
 import { Toaster } from "react-hot-toast";
-import ChatPopup from "./Popup/ChatPopup";
+import ChatButton from "./Popup/ChatButton";
 
 const HomePage = () => {
   const products = useSelector((store) => store?.product?.products);
@@ -20,7 +20,7 @@ const HomePage = () => {
       <Head />
       <Toaster position="bottom-left" reverseOrder={true} />
       <Categories />
-      <ChatPopup />
+      <ChatButton />
       <h3 className="font-bold text-2xl ">PRODUCTS</h3>
       <div className="flex flex-wrap justify-center">
         {products.map((product) => (
